@@ -8,10 +8,5 @@
   <p class="lising location">
     {{ housingLoaction.city }}, {{ housingLoaction.state }}
   </p>
-  <a
-    [routerLink]="['/details', housingLoaction.id]"
-    routerLinkActive="router-link-active"
-  >
-    More Detail
-  </a>
+  <a [routerLink]="['/details', housingLoaction.id]"> More Detail </a>
 </section>

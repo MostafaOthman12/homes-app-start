@@ -115,4 +115,7 @@ export class HousingService {
   getHousingById(id: number): HousingLocation | undefined {
     return this.housingLocactions.find((x) => x.id === id);
   }
+  applyToHoussing(firstName: string, lastName: string, email: string) {
+    console.log(firstName, lastName, email);
+  }
 }
