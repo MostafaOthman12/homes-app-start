@@ -6,7 +6,7 @@ Starting this project steps.
   `cd homes-app`
 - Install the depencies
   `npm install`
-- Run the application
-  `ng serve`
 - Run dummy backend server to fetch data
   `npx json-server db.json `
+- Run the application
+  `ng serve`
