@@ -1,20 +1,28 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { HousingLocation } from "./housing-location";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class HousingService {
-  protected housingLocactions: HousingLocation[] = [];
+  httpClient = inject(HttpClient);
+  private housingLocations: HousingLocation[] = [];
 
-  getAllHousing(): HousingLocation[] {
-    return this.housingLocactions;
+  getAllHousing(): Observable<HousingLocation[]> {
+    return this.httpClient.get<HousingLocation[]>(
+      "http://localhost:3000/locations"
+    );
   }
 
-  getHousingById(id: number): HousingLocation | undefined {
-    return this.housingLocactions.find((x) => x.id === id);
+  getHousingById(id: number): Observable<HousingLocation> | undefined {
+    return this.httpClient.get<HousingLocation>(
+      `http://localhost:3000/locations/${id}`
+    );
   }
-  applyToHoussing(firstName: string, lastName: string, email: string) {
+
+  applyToHousing(firstName: string, lastName: string, email: string) {
     console.log(firstName, lastName, email);
   }
 }

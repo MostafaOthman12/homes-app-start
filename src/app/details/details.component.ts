@@ -1,4 +1,11 @@
-import { Component, inject } from "@angular/core";
+import {
+  Component,
+  inject,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { HousingService } from "../housing.service";
@@ -25,12 +32,13 @@ export class DetailsComponent {
   });
   constructor() {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
-    this.housingLocation = this.housingService.getHousingById(
-      this.housingLocationId
-    );
+    this.housingService
+      .getHousingById(this.housingLocationId)
+      ?.subscribe({ next: (location) => (this.housingLocation = location) });
   }
+
   submitApplication() {
-    this.housingService.applyToHoussing(
+    this.housingService.applyToHousing(
       this.applyForm.value.firstName ?? "",
       this.applyForm.value.lastName ?? "",
       this.applyForm.value.email ?? ""
